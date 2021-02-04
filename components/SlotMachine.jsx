@@ -1,19 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SlotMachine = () => {
-  //   let a = "🍒";
-  //   let b = "🍊";
-  //   let c = "🥝";
+  const getInitialSlots = () => ({
+    a: "🍒",
+    b: "🍊",
+    c: "🥝",
+  });
+  const [possibleSlots, setpossibleSlots] = useState(getInitialSlots);
+  const [result, setResult] = useState(0);
 
-  let a = "🍒";
-  let b = "🍒";
-  let c = "🍒";
+  const doTheMath = (max) => {
+    const generateRandomNumber = Math.floor(Math.random() * Math.floor(max));
+    setResult(generateRandomNumber);
+  };
 
-  if (a === b && a === c) {
+  console.log(result);
+  if (result < 5) {
+    const newA = "🥝";
+    const newB = "🥝";
+    const newC = "🥝";
     return (
       <>
+        <button onClick={() => doTheMath(30)}>Win, play again</button>
+        {newA} {newB} {newC}
+      </>
+    );
+  }
+
+  const generateRandomSlot = () => {};
+
+  if (
+    possibleSlots.a === possibleSlots.b &&
+    possibleSlots.a === possibleSlots.c
+  ) {
+    return (
+      <>
+        <button onClick={() => doTheMath(30)}>Try</button>
         <h1>
-          {a} {b} {c}{" "}
+          {possibleSlots.a} {possibleSlots.b} {possibleSlots.c}{" "}
         </h1>
         <p>WIN</p>
       </>
@@ -21,8 +45,9 @@ const SlotMachine = () => {
   } else {
     return (
       <>
+        <button onClick={() => doTheMath(30)}>Try</button>
         <h1>
-          {a} {b} {c}{" "}
+          {possibleSlots.a} {possibleSlots.b} {possibleSlots.c}{" "}
         </h1>
         <p>TRY AGAIN</p>
       </>
