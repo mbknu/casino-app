@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-const SlotMachine = () => {
+const SlotMachine = ({ result }) => {
   const getInitialSlots = () => ({
     a: "🍒",
     b: "🍊",
     c: "🥝",
   });
-  const [possibleSlots, setpossibleSlots] = useState(getInitialSlots);
-  const [result, setResult] = useState(0);
 
-  const doTheMath = (max) => {
-    const generateRandomNumber = Math.floor(Math.random() * Math.floor(max));
-    setResult(generateRandomNumber);
-  };
-
-  console.log(result);
   if (result <= 1) {
     const newA = "🥝";
     const newB = "🥝";
@@ -22,7 +14,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>WIN</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -34,7 +25,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -46,7 +36,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -58,7 +47,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -70,7 +58,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -82,7 +69,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -94,7 +80,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>LOSE</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
@@ -106,7 +91,6 @@ const SlotMachine = () => {
     return (
       <>
         <h1>WIN</h1>
-        <button onClick={() => doTheMath(30)}>Play again</button>
         <br />
         {newA} {newB} {newC}
       </>
