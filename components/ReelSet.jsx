@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import { NUMBER_OF_REELS } from "../constants";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import Reel from "./Reel";
@@ -9,7 +9,8 @@ const ReelSet = () => {
   const { height, width } = useWindowDimensions();
   const [reelWidth, setReelWidth] = useState(null);
   const [reelHeight, setReelHeight] = useState(null);
-  const [reels, setReels] = useState([]);
+
+  const reels = createRef([]);
 
   const onLayout = (e) => {
     setReelWidth(width);
@@ -17,7 +18,7 @@ const ReelSet = () => {
   };
 
   const spin = () => {
-    reels[0].scrollByOffSet(10);
+    reels[0].scrollByOffset(10);
   };
 
   const renderReels = () => {
@@ -25,19 +26,23 @@ const ReelSet = () => {
     let getReelHeight = Math.floor(height / 1.5);
 
     let reelList = Array.apply(null, Array(NUMBER_OF_REELS)).map((el, idx) => {
+      console.log(reels[idx]);
       return (
         <Reel
           width={getReelWidth}
           height={getReelHeight}
           key={idx}
           index={idx}
-          ref={(ref) => {
-            setReels[idx] = ref;
-          }}
+          ref={reels[idx]}
         />
       );
     });
-    return <>{reelList}</>;
+    return (
+      <>
+        {reelList}
+        <button onClick={() => spin()}>SPIN</button>
+      </>
+    );
   };
   return (
     <div className={styles.wrapper} onLayout={onLayout}>
