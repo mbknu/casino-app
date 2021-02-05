@@ -9,10 +9,15 @@ const ReelSet = () => {
   const { height, width } = useWindowDimensions();
   const [reelWidth, setReelWidth] = useState(null);
   const [reelHeight, setReelHeight] = useState(null);
+  const [reels, setReels] = useState([]);
 
   const onLayout = (e) => {
     setReelWidth(width);
     setReelHeight(height);
+  };
+
+  const spin = () => {
+    reels[0].scrollByOffSet(10);
   };
 
   const renderReels = () => {
@@ -26,10 +31,12 @@ const ReelSet = () => {
           height={getReelHeight}
           key={idx}
           index={idx}
+          ref={(ref) => {
+            setReels[idx] = ref;
+          }}
         />
       );
     });
-    console.log({ reelList });
     return <>{reelList}</>;
   };
   return (

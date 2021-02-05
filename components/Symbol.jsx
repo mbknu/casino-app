@@ -1,42 +1,57 @@
 import React from "react";
-import Images from "../assets/Image";
-import Image from "next/image";
 
+import Image from "next/image";
+import images from "../constants/Image";
+
+const symbolMap = {
+  7: images.seven,
+  C: images.cherry,
+  B: images.black_sloth,
+  D: images.diamond,
+  E: images.dollar,
+  G: images.grappe,
+  H: images.heart,
+  L: images.lemon,
+  S: images.sloth,
+  W: images.watermelon,
+};
 const Symbol = ({ symbol }) => {
+  const imageSrc = symbolMap[symbol];
+
   const getImage = () => {
     switch (symbol) {
       case "7":
-        return Images.seven;
+        return images.seven;
         break;
       case "B":
-        return Images.black_sloth;
+        return images.black_sloth;
         break;
       case "C":
-        return Images.cherry;
+        return images.cherry;
         break;
       case "D":
-        return Images.diamond;
+        return images.diamond;
         break;
       case "E":
-        return Images.dollar;
+        return images.dollar;
         break;
       case "G":
-        return Images.grappe;
+        return images.grappe;
         break;
       case "H":
-        return Images.heart;
+        return images.heart;
         break;
       case "L":
-        return Images.lemon;
+        return images.lemon;
         break;
       case "S":
-        return Images.sloth;
+        return images.sloth;
         break;
       case "W":
-        return Images.watermelon;
+        return images.watermelon;
         break;
       default:
-        return Images.sloth;
+        return images.sloth;
     }
   };
 
@@ -44,8 +59,7 @@ const Symbol = ({ symbol }) => {
 
   return (
     <div>
-      TEST
-      <Image src={symbolSource} />
+      <Image src={symbolSource} width="75" height="75" />
     </div>
   );
 };
