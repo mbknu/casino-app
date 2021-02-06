@@ -1,53 +1,50 @@
-import React, { createRef, useState } from "react";
-import { NUMBER_OF_REELS } from "../constants";
+import React, { useState } from "react";
+
+import { NUMBER_OF_REELS, NUMBER_OF_SYMBOLS, REEL_REPEATS } from "../constants";
 import useWindowDimensions from "../utils/useWindowDimensions";
+
 import Reel from "./Reel";
 
 import styles from "../styles/ReelSet.module.css";
 
 const ReelSet = () => {
   const { height, width } = useWindowDimensions();
-  const [reelWidth, setReelWidth] = useState(null);
-  const [reelHeight, setReelHeight] = useState(null);
+  const [symbols, setSymbols] = useState("BBBCDGLCCCEEELLDDMS777XDBL");
 
-  const reels = createRef([]);
+  const reelSymbol = symbols.repeat(REEL_REPEATS).split("");
+  const shuffleReelSymbol = reelSymbol.sort(() => 0.5 - Math.random());
+  const symbolHeight = height / NUMBER_OF_SYMBOLS;
 
-  const onLayout = (e) => {
-    setReelWidth(width);
-    setReelHeight(height);
-  };
-
-  const spin = () => {
-    reels[0].scrollByOffset(10);
+  const onStartSpin = () => {
+    const element = reelSymbol.join("");
+    setSymbols(element);
   };
 
   const renderReels = () => {
     let getReelWidth = Math.floor(width / NUMBER_OF_REELS);
-    let getReelHeight = Math.floor(height / 1.5);
+    let getReelHeight = Math.floor(height);
 
     let reelList = Array.apply(null, Array(NUMBER_OF_REELS)).map((el, idx) => {
-      console.log(reels[idx]);
       return (
         <Reel
           width={getReelWidth}
           height={getReelHeight}
           key={idx}
           index={idx}
-          ref={reels[idx]}
+          symbolHeight={symbolHeight}
+          shuffleReelSymbol={shuffleReelSymbol}
         />
       );
     });
     return (
       <>
         {reelList}
-        <button onClick={() => spin()}>SPIN</button>
+        <button onClick={() => onStartSpin()}>SPIN</button>
       </>
     );
   };
   return (
-    <div className={styles.wrapper} onLayout={onLayout}>
-      {width && height && renderReels()}{" "}
-    </div>
+    <div className={styles.wrapper}>{width && height && renderReels()} </div>
   );
 };
 
