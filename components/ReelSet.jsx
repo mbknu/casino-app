@@ -14,10 +14,10 @@ const ReelSet = () => {
   const reelSymbol = symbols.repeat(REEL_REPEATS).split("");
   const shuffleReelSymbol = reelSymbol.sort(() => 0.5 - Math.random());
   const symbolHeight = height / NUMBER_OF_SYMBOLS;
+  const setNewShuffle = reelSymbol.join("");
 
   const onStartSpin = () => {
-    const element = reelSymbol.join("");
-    setSymbols(element);
+    setSymbols(setNewShuffle);
   };
 
   const renderReels = () => {
