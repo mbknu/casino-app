@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import styles from "../styles/Reel.module.css";
 import Symbol from "./Symbol";
 
 const Reel = ({ height, width, symbolHeight, shuffleReelSymbol }) => {
-  const [getShuffleValue, setShuffleValue] = useState(shuffleReelSymbol);
-
-  useEffect(() => {
-    if (JSON.stringify(getShuffleValue) === JSON.stringify(shuffleReelSymbol)) {
-      const newShuffle = shuffleReelSymbol.sort(() => 0.5 - Math.random());
-      const joinNewShuffle = newShuffle.join("");
-      const setNewShuffle = joinNewShuffle.split("");
-      const timer = setTimeout(() => {
-        setShuffleValue(setNewShuffle);
-      }, 75);
-      // setShuffleValue(setNewShuffle);
-      return () => clearTimeout(timer);
-    } else {
-      console.log("Arrays are not equal.");
-    }
-  }, [getShuffleValue]);
-
+  const newShuffle = shuffleReelSymbol.sort(() => 0.5 - Math.random());
   return (
     <div className={styles.wrapper}>
       <div
@@ -29,7 +13,7 @@ const Reel = ({ height, width, symbolHeight, shuffleReelSymbol }) => {
           width: width,
         }}
       >
-        {shuffleReelSymbol.map((symbol, index) => {
+        {newShuffle.map((symbol, index) => {
           return (
             <div className={styles.symbol}>
               <Symbol
