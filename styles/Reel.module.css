@@ -1,12 +1,11 @@
 .wrapper {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   overflow: hidden;
   display: flex;
   justify-content: center;
 }
 
 .container {
-  border: 1px green solid;
   display: flex;
   background-color: blue;
   flex-direction: column;
@@ -16,6 +15,10 @@
 .symbol {
   display: flex;
   justify-content: center;
+}
+.symbol:nth-child(4) {
+  border-bottom: 2px black solid;
+  border-top: 2px black solid;
 }
 
 /* @-webkit-keyframes walk {
