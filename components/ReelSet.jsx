@@ -9,7 +9,7 @@ import styles from "../styles/ReelSet.module.css";
 
 const ReelSet = () => {
   const { height, width } = useWindowDimensions();
-  const [symbols, setSymbols] = useState("BBBCDGLCCCEEELLDDMS777XDBL");
+  const [symbols, setSymbols] = useState("BBGBCDGLCCCE7EELLDGDMS777XDGBL");
   const [getShuffleValue, setShuffleValue] = useState([]);
 
   const reelSymbol = symbols.repeat(REEL_REPEATS).split("");
@@ -48,18 +48,19 @@ const ReelSet = () => {
     let getReelWidth = Math.floor(width / NUMBER_OF_REELS);
     let getReelHeight = Math.floor(height);
 
-    let reelList = Array.apply(null, Array(NUMBER_OF_REELS)).map((el, idx) => {
-      return (
-        <Reel
-          width={getReelWidth}
-          height={getReelHeight}
-          key={idx}
-          index={idx}
-          symbolHeight={symbolHeight}
-          shuffleReelSymbol={shuffleReelSymbol}
-        />
-      );
-    });
+    let reelList = Array.apply(null, Array(NUMBER_OF_REELS)).map(
+      (el, index) => {
+        return (
+          <Reel
+            width={getReelWidth}
+            height={getReelHeight}
+            key={index}
+            symbolHeight={symbolHeight}
+            shuffleReelSymbol={shuffleReelSymbol}
+          />
+        );
+      }
+    );
     return (
       <>
         {reelList}

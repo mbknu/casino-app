@@ -11,7 +11,7 @@ export default function Home() {
         <title>My Casino App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ReelSet ref={reelSet} />
+      <ReelSet />
     </div>
   );
 }
