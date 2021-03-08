@@ -1,0 +1,7 @@
+.wrapper {
+  border: 2px solid red;
+  height: 54.5vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}

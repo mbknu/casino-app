@@ -1,0 +1,21 @@
+.wrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  background-color: blue;
+  flex-direction: column;
+  align-items: center;
+}
+
+.symbol {
+  display: flex;
+  justify-content: center;
+}
+.symbol:nth-child(4) {
+  border-bottom: 2px black solid;
+  border-top: 2px black solid;
+}
